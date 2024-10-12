@@ -1,0 +1,35 @@
+cmake_minimum_required(VERSION 3.29.0)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Debug)
+endif()  
+if(CMAKE_BUILD_TYPE STREQUAL Debug)
+    add_compile_definitions(DEBUG)
+endif()
+project(tmath)
+
+set(CMAKE_PREFIX_PATH /home/jujinqian/usr)
+include_directories($ENV{INCLUDE})
+
+
+# find_package(Catch2)
+if(NOT Catch2_FOUND)
+    if(EXISTS "${CMAKE_CURRENT_SOURCE_DIR}/Catch2")
+        message(STATUS "Catch2 found in source directory")
+        add_subdirectory(Catch2)
+        set(Catch2_FOUND TRUE)
+    else()
+        message(FATAL_ERROR "Catch2 not found")
+    endif()
+else()
+    message(STATUS "Catch2 found: ${Catch2_VERSION}")
+endif()
+add_executable(${PROJECT_NAME} main.cpp)
+target_link_libraries(${PROJECT_NAME} Catch2::Catch2WithMain)
+add_custom_target(run COMMAND $<TARGET_FILE:${PROJECT_NAME}>)
