@@ -1,6 +1,5 @@
 #include "tmath.hpp"
 #include <catch2/catch_test_macros.hpp>
-#include <cout.hpp>
 #include <ranges>
 
 TEST_CASE("ranges::views") {
