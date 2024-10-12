@@ -34,7 +34,7 @@ constexpr bool check_size_equal(T& lhs, U& rhs) {
 
 } // namespace detail
 
-inline namespace operators {
+inline namespace tmath_operators {
 
 //////////////////////////////////////////////////////////////////////////////////////////
 #define ENABLE_MATH_RIGHT_OPERATORS(_op)                                       \
@@ -101,7 +101,7 @@ ENABLE_MATH_BINARY_OPERATORS(/)
 ENABLE_MATH_OPERATORS(%)
 ENABLE_MATH_BINARY_OPERATORS(%)
 
-} // namespace operators
+} // namespace tmath_operators
 
 namespace tmath {
 

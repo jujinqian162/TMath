@@ -25,7 +25,7 @@ TEST_CASE("static_assert") {
 }
 
 TEST_CASE("operator *") {
-    using namespace operators;
+    using namespace tmath_operators;
     SECTION("Vector multiplication") {
         std::vector<int> vec = {1, 2, 3, 4, 5};
         auto transformed = 3 * vec;
@@ -86,7 +86,7 @@ TEST_CASE("operator *") {
 }
 
 TEST_CASE("operator /") {
-    using namespace operators;
+    using namespace tmath_operators;
     std::vector<double> vec = {1, 2, 3, 4, 5};
     auto transformed = vec / 2;
     CHECK(std::ranges::equal(transformed,
@@ -103,7 +103,7 @@ TEST_CASE("operator /") {
 }
 
 TEST_CASE("operator + & -") {
-    using namespace operators;
+    using namespace tmath_operators;
     std::vector<double> vec = {1, 2, 3, 4, 5};
     auto transformed = vec + 2;
     CHECK(std::ranges::equal(transformed, std::vector<double>{3, 4, 5, 6, 7}));
@@ -137,7 +137,7 @@ TEST_CASE("operator + & -") {
 }
 
 TEST_CASE("operator %") {
-    using namespace operators;
+    using namespace tmath_operators;
     std::vector<int> vec = {1, 2, 3, 4, 5};
     auto transformed = vec % 2;
     CHECK(std::ranges::equal(transformed, std::vector<int>{1, 0, 1, 0, 1}));
@@ -254,6 +254,7 @@ auto square(auto&& x) { return x * x; }
 auto reciprocal(auto&& x) { return 1. / x; }
 
 auto sigmoid(auto&& x) { return 1. / (1. + tmath::exp(-x)); }
+
 template <typename T>
 auto sigmoid2(T&& x) {
     if constexpr (std::is_rvalue_reference_v<T&&>) {
